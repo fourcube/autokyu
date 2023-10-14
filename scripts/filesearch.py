@@ -3,7 +3,9 @@
 import subprocess
 import argparse
 from urllib.parse import urlparse
+from time import time
 
+timestamp = int(time())
 wordlists = [
     ("txt", "/opt/wordlists/data/automated/httparchive_txt_2023_08_28.txt"),
     ("xml", "/opt/wordlists/data/automated/httparchive_xml_2023_08_28.txt"),
@@ -32,7 +34,7 @@ for wordlist_key, wordlist in wordlists:
         f"{args.url}/FUZZ",
         # output
         "-o",
-        f"files_{url.netloc}_{wordlist_key}.{args.format}",
+        f"files_{timestamp}_{url.netloc}_{wordlist_key}.{args.format}",
         "-of",
         args.format,
     ]

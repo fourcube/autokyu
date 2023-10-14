@@ -2,8 +2,10 @@
 
 import subprocess
 import argparse
+from time import time
 from urllib.parse import urlparse
 
+timestamp = int(time())
 parser = argparse.ArgumentParser(description="scans for directories on a host")
 parser.add_argument(
     "-w",
@@ -28,7 +30,7 @@ dirsearch_args = [
     f"{args.url}/FUZZ",
     # output
     "-o",
-    f"dirs_{url.netloc}.{args.format}",
+    f"dirs_{timestamp}_{url.netloc}.{args.format}",
     "-of",
     args.format,
 ]
