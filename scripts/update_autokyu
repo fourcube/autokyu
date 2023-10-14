@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+script_name=$0
+script_full_path=$(dirname "$0")
+
+pushd $script_full_path
+git pull
+popd
