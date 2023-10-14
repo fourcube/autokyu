@@ -17,20 +17,20 @@ parser.add_argument("url")
 args = parser.parse_args()
 url = urlparse(args.url)
 
-subprocess.run(
-    [
-        "ffuf",
-        "-recursion",
-        # wordlist
-        "-w",
-        args.wordlist,
-        # target url
-        "-u",
-        f"{args.url}/FUZZ",
-        # output
-        "-o",
-        f"{url.netloc}.{args.format}",
-        "-of",
-        args.format,
-    ]
-)
+dirsearch_args = [
+    "ffuf",
+    "-recursion",
+    # wordlist
+    "-w",
+    args.wordlist,
+    # target url
+    "-u",
+    f"{args.url}/FUZZ",
+    # output
+    "-o",
+    f"dirs_{url.netloc}.{args.format}",
+    "-of",
+    args.format,
+]
+
+subprocess.run(dirsearch_args)
