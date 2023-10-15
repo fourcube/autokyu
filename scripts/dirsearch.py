@@ -21,7 +21,14 @@ url = urlparse(args.url)
 
 dirsearch_args = [
     "ffuf",
+    # concurrency,
+    "-t",
+    "5",
     "-recursion",
+    "-recursion-depth",
+    "4",
+    # follow-redirects
+    "-r",
     # wordlist
     "-w",
     args.wordlist,
@@ -33,6 +40,7 @@ dirsearch_args = [
     f"dirs_{timestamp}_{url.netloc}.{args.format}",
     "-of",
     args.format,
+    "-ignore-body",
 ]
 
 subprocess.run(dirsearch_args)

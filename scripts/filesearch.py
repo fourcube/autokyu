@@ -26,6 +26,9 @@ for wordlist_key, wordlist in wordlists:
     print(wordlist_key, wordlist)
     filesearch_args = [
         "ffuf",
+        # concurrency,
+        "-t",
+        "5",
         # wordlist
         "-w",
         wordlist,
@@ -37,6 +40,7 @@ for wordlist_key, wordlist in wordlists:
         f"files_{timestamp}_{url.netloc}_{wordlist_key}.{args.format}",
         "-of",
         args.format,
+        "-ignore-body",
     ]
 
     subprocess.run(filesearch_args)
